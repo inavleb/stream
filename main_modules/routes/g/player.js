@@ -5,8 +5,8 @@ var Path = require("node:path");
 var express = require("express");
 
 var db = global.$db;
-var ERROR_PAGE = "pages/error/stream_unavailable";
-var ERROR_TITLE = { title: "Media stream unavailable!" };
+var err_page = "pages/error/stream_unavailable";
+var err_data = { title: "Media stream unavailable!" };
 
 var router = express.Router();
 
@@ -16,14 +16,14 @@ router.get("/player/:stream?", (req, res, next) => {
 });
 
 router.get("/player/:stream?", (req, res, next) => {
+  res.locals.layout = "player";
   req.stream = db.get("streams").find({ id: req.id }).value();
-  req.stream ? next() : res.status(404).render(ERROR_PAGE, ERROR_TITLE);
+  req.stream ? next() : res.status(404).render(err_page, err_data);
 });
 
 router.get("/player/:stream?", (req, res, next) => {
   res.locals.title = req.stream.name;
   res.locals.stream = req.stream.url;
-  res.locals.layout = "player";
 
   res.render("pages/player");
 });

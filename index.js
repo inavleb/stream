@@ -89,6 +89,4 @@ queue.execute = async () => {
 watcher.on("add", path => queue.push(path));
 watcher.on("error", err => (console.log("WatcherError:"), console.error(err)));
 watcher.on("unlink", path => DB.del(path));
-watcher.on("ready", () => {
-  queue.execute(), server();
-});
+watcher.on("ready", () => (queue.execute(), server()));
