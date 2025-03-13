@@ -51,7 +51,7 @@ DB.add = async path => {
     item = Object.assign(Path.parse(path), { path });
     item.id = id;
     item.uuid = crypto.randomUUID();
-    item.url = "/-/stream/" + item.uuid;
+    item.url = "/-/media/stream/" + item.uuid;
     symlink = Path.join(symlinkdir, item.uuid);
 
     fs.symlink(path, symlink, "file", err => {

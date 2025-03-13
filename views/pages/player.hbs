@@ -2,15 +2,11 @@
 <script type="module" src="/static/js/libs/media-chrome.min.js" crossorigin="anonymous"></script>
 <script src="/static/js/player.js" crossorigin="anonymous"></script>
 {{/contentFor}}
-<div id="splash" class="position-fixed text-bg-dark top-0 start-0 w-100 h-100 py-5 z-1">
-  <div class="position-absolute overflow-y-scroll top-50 start-0 w-100 mh-100 translate-middle-y">
+<div id="splash" class="position-fixed text-bg-dark top-0 start-0 w-100 h-100 z-1">
+  <div class="position-absolute overflow-y-scroll top-50 start-0 w-100 mh-100 translate-middle-y py-3">
     <div class="container">
       <div class="text-center">
-        <div>
-          <span class="bg-icon app-icon"></span>
-        </div>
-
-        <h3>s•t•r•e•a•m</h3>
+        <div class="bg-icon app-icon" style="font-size: 6em;"></div>
       </div>
     </div>
   </div>
@@ -25,11 +21,10 @@
     <media-playback-rate-button class="d-none d-sm-flex"></media-playback-rate-button>
     <media-mute-button></media-mute-button>
     <media-volume-range class="d-none d-sm-flex"></media-volume-range>
+    <media-time-range></media-time-range>
     <media-seek-backward-button seekoffset="15" class="d-none d-sm-flex"></media-seek-backward-button>
     <media-seek-forward-button seekoffset="30" class="d-none d-sm-flex"></media-seek-forward-button>
-    <media-time-range></media-time-range>
     <media-time-display></media-time-display>
-    <media-pip-button></media-pip-button>
     <media-fullscreen-button></media-fullscreen-button>
   </media-control-bar>
 </media-controller>

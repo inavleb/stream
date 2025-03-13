@@ -6,8 +6,9 @@ var router = express.Router();
 var db = global.$db;
 
 router.get("/", (req, res, next) => {
+  res.locals.title = "Stream";
   res.locals.streams = db.get("streams").value();
-  
+
   res.render("pages/home");
 });
 

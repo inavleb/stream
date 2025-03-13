@@ -10,17 +10,17 @@ var uuid_format =
 
 var router = express.Router();
 
-router.get("/-/stream/:uuid?", (req, res, next) => {
+router.get("/-/media/stream/:uuid?", (req, res, next) => {
   req.uuid = req.params.uuid || req.query.uuid;
   req.uuid = (uuid_format.exec(req.uuid) || [null])[0];
   req.uuid ? next() : next(404);
 });
 
-router.get("/-/stream/:uuid?", (req, res, next) => {
+router.get("/-/media/stream/:uuid?", (req, res, next) => {
   req.range() ? next() : next(404);
 });
 
-router.get("/-/stream/:uuid?", (req, res, next) => {
+router.get("/-/media/stream/:uuid?", (req, res, next) => {
   req.symlink = Path.join(symlinkdir, req.uuid);
 
   fs.realpath(req.symlink, (err, path) =>
