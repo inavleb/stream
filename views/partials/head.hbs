@@ -1,0 +1,16 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{#if themeColor}}
+<meta name="theme-color" content="{{ themeColor }}">
+{{/if}}
+<title>{{ title }}</title>
+
+<link rel="icon" href="/static/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
+<link rel="manifest" href="/static/manifest.json">
+
+<link rel="stylesheet" href="/static/css/libs/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/css/libs/bootstrap-icons.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/css/libs/jquery-confirm.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/css/style.css" crossorigin="anonymous">
+{{> block/css }}
