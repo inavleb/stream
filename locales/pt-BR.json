@@ -1,0 +1,11 @@
+{
+  "appname": "Stream",
+  "goToHome": "Go to Home",
+  "serverErrorTitle": "Something went wrong!",
+  "serverErrorMessage": "Internal Server Error",
+  "serverErrorSummary": "Sorry, something went wrong!",
+  "pageNotFoundTitle": "Page not found",
+  "pageNotFoundMessage": "The requested url {{{url}}} was not found on this server.",
+  "pageNotFoundSummary": "That’s all we know.",
+  "MediaStreamUnavailable": "Media stream unavailable!"
+}

@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }}</title>
+  <title>{{ __ "serverErrorTitle" }}</title>
   <link rel="icon" type="image/png" sizes="48x48" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAP1BMVEVHcEzcNUXcNUXcNUXcNUXcNUXcNUXcNUXcNUXcNUXcNUXcNUXcNUXcM0T////gTVv75+nfRlT53eDvpKvoeoXOhYRpAAAADHRSTlMAF+KQVQotqtX4fceMAV7EAAABJElEQVRIx9VVy47DMAgsfsROYtza6f9/63Z7iIKBtROtVJVbJCYwAx5uty8JD6/wg8nglrBGY+IaFgfd9MnGOe0xRzt10k1qwvwB8Y6lvyFOYQN2TmLMVqQCIakRoJuP2EF4S/9ZCv22LQ9H+3/W+qQ8XKMn0QdLzbkW0pWh6tKG8P7I+XGnNKxeQAQgKdEwFiscS0AcAUTQJFIAB6GWNAJIyw4IY4CwT3kdA6xe4awBdtZgxgDmOuBsS5y0sHxH0kzWhGy9iaxscMIDooNz/PUjci9w6vIl/K2gchbWu2y1bkVf7/YBpS2/YmumMKme8VaV6Wp1ExABjQk0QvGWWpuhTQmkmZFRq2Sy9s2VDi7Af9j9+YNy/mRdOIoXzu6Fw/7x+AENwjxmSNCs4gAAAABJRU5ErkJggg==">
-  <link rel="stylesheet" href="/static/css/libs/bootstrap.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/libs/bootstrap-icons.min.css" crossorigin="anonymous">
+  <style type="text/css">
+    {{> bootstrap/css }}
+  </style>
 </head>
 <body>
   <div class="position-fixed top-0 start-0 w-100 h-100">
@@ -16,16 +17,21 @@
           <div class="col-md-6">
             <div class="row justify-content-center align-items-center">
               <div class="col-sm-auto">
-                <div class="text-center text-danger" style="font-size: 5em;">
-                  <i class="bi bi-exclamation-circle-fill"></i>
+                <div class="text-center text-danger">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-bug-fill" viewBox="0 0 16 16">
+                    <path d="M4.978.855a.5.5 0 1 0-.956.29l.41 1.352A5 5 0 0 0 3 6h10a5 5 0 0 0-1.432-3.503l.41-1.352a.5.5 0 1 0-.956-.29l-.291.956A5 5 0 0 0 8 1a5 5 0 0 0-2.731.811l-.29-.956z" />
+                    <path d="M13 6v1H8.5v8.975A5 5 0 0 0 13 11h.5a.5.5 0 0 1 .5.5v.5a.5.5 0 1 0 1 0v-.5a1.5 1.5 0 0 0-1.5-1.5H13V9h1.5a.5.5 0 0 0 0-1H13V7h.5A1.5 1.5 0 0 0 15 5.5V5a.5.5 0 0 0-1 0v.5a.5.5 0 0 1-.5.5zm-5.5 9.975V7H3V6h-.5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 0-1 0v.5A1.5 1.5 0 0 0 2.5 7H3v1H1.5a.5.5 0 0 0 0 1H3v1h-.5A1.5 1.5 0 0 0 1 11.5v.5a.5.5 0 1 0 1 0v-.5a.5.5 0 0 1 .5-.5H3a5 5 0 0 0 4.5 4.975" />
+                  </svg>
                 </div>
               </div>
 
+              <div class="vr d-none d-sm-block mx-2 px-0"></div>
+
               <div class="col-sm">
-                <div class="text-center text-sm-start fw-bold">
-                  <h3 class="m-0">{{ title }}</h3>
+                <div class="text-center text-sm-start">
+                  <h3 class="text-uppercase fw-bold m-0">{{ __ "serverErrorMessage" }}</h3>
                   <p class="text-secondary m-0">
-                    Sorry, something went wrong!
+                    {{ __ "serverErrorSummary" }}
                   </p>
                 </div>
               </div>
@@ -35,7 +41,5 @@
       </div>
     </div>
   </div>
-
-  <script src="/static/js/libs/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
