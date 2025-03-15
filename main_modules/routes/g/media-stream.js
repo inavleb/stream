@@ -17,7 +17,15 @@ router.get("/-/media/stream/:uuid?", (req, res, next) => {
 });
 
 router.get("/-/media/stream/:uuid?", (req, res, next) => {
-  req.range() ? next() : next(404);
+  console.log(req.path, req.headers);
+
+  if (!req.range()) return res.end();
+  if (!req.headers.referer) return res.end();
+  if (req.headers.referer.includes(req.path)) return res.end();
+  if (!req.headers.referer.includes(req.headers.host)) return res.end();
+  if (req.headers.referer.includes(req.headers.origin)) return res.end();
+
+  next();
 });
 
 router.get("/-/media/stream/:uuid?", (req, res, next) => {

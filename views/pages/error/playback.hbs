@@ -15,28 +15,29 @@
   <link rel="stylesheet" href="/static/css/libs/bootstrap-icons.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/css/libs/jquery-confirm.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/css/style.css" crossorigin="anonymous">
-  {{> block/css }}
 </head>
 <body>
-  {{> header }}
-
   <div class="position-fixed text-bg-dark top-0 start-0 w-100 h-100">
     <div class="position-absolute overflow-y-scroll top-50 start-0 w-100 mh-100 translate-middle-y py-3">
       <div class="container">
-        <div class="row justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center">
           <div class="col-md-6">
             <div class="row justify-content-center align-items-center">
-              <div class="col-sm-auto">
-                <div class="text-center text-white-50" style="font-size: 5em;">
+              <div class="col-sm-auto my-3">
+                <div class="text-center opacity-50 lh-1" style="font-size: 5em;">
                   <i class="bi bi-exclamation-circle-fill"></i>
                 </div>
               </div>
 
-              <div class="vr d-none d-sm-block mx-2 px-0"></div>
+              <div class="d-none d-sm-block vr mx-2 px-0"></div>
 
-              <div class="col-sm overflow-hidden">
-                <div class="text-center text-sm-start overflow-hidden">
-                  {{{ message }}} <span class="text-secondary">{{ summary }}</span>
+              <div class="col-sm">
+                <div class="text-center text-sm-start fw-bold">
+                  <h3 class="opacity-50 mb-3">{{ title }}</h3>
+
+                  <button id="btn" class="btn btn-sm btn-light fw-medium px-3 rounded-pill">
+                    {{ __ "goToHome" }} <i class="bi bi-house-fill"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -45,12 +46,13 @@
       </div>
     </div>
   </div>
-  {{> footer }}
 
   <script src="/static/js/libs/jquery.min.js" crossorigin="anonymous"></script>
   <script src="/static/js/libs/jquery-confirm.min.js" crossorigin="anonymous"></script>
   <script src="/static/js/libs/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="/static/js/jconfirm.defaults.js" crossorigin="anonymous"></script>
-  {{> block/scripts }}
+  <script>
+    (() => { "use strict", $(btn).click(() => window.location.replace("/")); })();
+  </script>
 </body>
 </html>

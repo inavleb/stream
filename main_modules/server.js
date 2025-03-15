@@ -4,17 +4,21 @@ var hbs = require("express-hbs");
 var i18n = require("i18n");
 var cors = require("cors");
 var Path = require("node:path");
-var http = require("node:http");
 var morgan = require("morgan");
 var express = require("express");
 var cookieSession = require("cookie-session");
+var { Server } = require("socket.io");
+var { createServer } = require("node:http");
 
 var db = global.$db;
 var config = db.get("config").value();
 var secret = config.secret;
 var $erver = config.server;
+var session = { name: "session", secret };
+
 var app = express();
-var server = http.createServer(app);
+var server = createServer(app);
+var io = new Server(server);
 
 module.exports = async () => server.listen($erver.port, $erver.host);
 
@@ -28,7 +32,6 @@ i18n.configure({
 app.engine(
   "hbs",
   hbs.express4({
-    //i18n,
     layoutsDir: Path.resolve("views", "layouts"),
     partialsDir: Path.resolve("views", "partials"),
     defaultLayout: Path.resolve("views", "layouts", "main.hbs")
@@ -38,7 +41,16 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", Path.resolve("views"));
 
-app.use(cors());
+app.use(cookieSession(session));
+app.use(i18n.init);
+
+app.use(
+  cors({
+    origin: "http://example.com",
+    optionsSuccessStatus: 200
+  })
+);
+
 app.use(
   morgan("dev", {
     skip: function (req, res) {
@@ -46,15 +58,6 @@ app.use(
     }
   })
 );
-
-app.use(
-  cookieSession({
-    name: "session",
-    keys: [secret]
-  })
-);
-
-app.use(i18n.init);
 
 app.use((req, res, next) => {
   res.locals.origin = req.protocol + "://" + req.get("host");
@@ -70,6 +73,10 @@ app.use(express.static(Path.resolve("public")));
 app.use(require("./routes"));
 app.use(require("./routes/error/404"));
 app.use(require("./routes/error/500"));
+
+io.on("connection", socket => {
+  console.log("a user connected");
+});
 
 server.on("error", err => (console.log("ServerError:"), console.error(err)));
 server.on("listening", () =>

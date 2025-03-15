@@ -1,30 +1,59 @@
-{{#contentFor "scripts"}}
-<script type="module" src="/static/js/libs/media-chrome.min.js" crossorigin="anonymous"></script>
-<script src="/static/js/player.js" crossorigin="anonymous"></script>
-{{/contentFor}}
-<div id="splash" class="position-fixed text-bg-dark top-0 start-0 w-100 h-100 z-1">
-  <div class="position-absolute overflow-y-scroll top-50 start-0 w-100 mh-100 translate-middle-y py-3">
-    <div class="container">
-      <div class="text-center">
-        <div class="bg-icon app-icon" style="font-size: 6em;"></div>
+<!doctype html>
+<html lang="{{ locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5F9BEB">
+  <meta name="title" content="{{ title }}">
+  <meta name="author" content="{{ author }}">
+  <meta name="robots" content="{{ robots }}">
+  <meta name="keywords" content="{{ keywords }}">
+  <meta name="description" content="{{ description }}">
+
+  <title>{{ title }}</title>
+
+  <link rel="icon" href="/static/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/static/manifest.json">
+
+  <link rel="stylesheet" href="/static/css/libs/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/libs/bootstrap-icons.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/libs/jquery-confirm.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/style.css" crossorigin="anonymous">
+</head>
+<body>
+  <div id="splash" class="position-fixed text-bg-dark top-0 start-0 w-100 h-100 z-1">
+    <div class="position-absolute overflow-y-scroll top-50 start-0 w-100 mh-100 translate-middle-y py-3">
+      <div class="container">
+        <div class="text-center">
+          <div class="bg-icon app-icon" style="font-size: 6em;"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<media-controller class="position-fixed bg-black top-0 start-0 w-100 h-100 z-0">
-  <video id="media" slot="media" data-src="{{ stream }}" crossorigin></video>
-  <media-poster-image slot="poster" src="/static/img/movie-poster-collection.png"></media-poster-image>
-  <media-loading-indicator slot="centered-chrome"></media-loading-indicator>
-  <media-control-bar>
-    <media-play-button></media-play-button>
-    <media-playback-rate-button class="d-none d-sm-flex"></media-playback-rate-button>
-    <media-mute-button></media-mute-button>
-    <media-volume-range class="d-none d-sm-flex"></media-volume-range>
-    <media-time-range></media-time-range>
-    <media-seek-backward-button seekoffset="15" class="d-none d-sm-flex"></media-seek-backward-button>
-    <media-seek-forward-button seekoffset="30" class="d-none d-sm-flex"></media-seek-forward-button>
-    <media-time-display></media-time-display>
-    <media-fullscreen-button></media-fullscreen-button>
-  </media-control-bar>
-</media-controller>
+  <media-controller class="position-fixed bg-black top-0 start-0 w-100 h-100 z-0">
+    <video id="media" slot="media" data-src="{{ stream }}" crossorigin="anonymous"></video>
+    <media-poster-image slot="poster" src="/static/img/movie-poster-collection.png"></media-poster-image>
+    <media-loading-indicator slot="centered-chrome"></media-loading-indicator>
+    <media-control-bar>
+      <media-play-button></media-play-button>
+      <media-playback-rate-button class="d-none d-sm-flex"></media-playback-rate-button>
+      <media-mute-button></media-mute-button>
+      <media-volume-range class="d-none d-sm-flex"></media-volume-range>
+      <media-time-range></media-time-range>
+      <media-seek-backward-button seekoffset="15" class="d-none d-sm-flex"></media-seek-backward-button>
+      <media-seek-forward-button seekoffset="30" class="d-none d-sm-flex"></media-seek-forward-button>
+      <media-time-display></media-time-display>
+      <media-fullscreen-button></media-fullscreen-button>
+    </media-control-bar>
+  </media-controller>
+
+  <script src="/static/js/libs/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="/static/js/libs/jquery-confirm.min.js" crossorigin="anonymous"></script>
+  <script src="/static/js/libs/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="/static/js/jconfirm.defaults.js" crossorigin="anonymous"></script>
+  <script type="module" src="/static/js/libs/media-chrome.min.js" crossorigin="anonymous"></script>
+  <script src="/static/js/player.js" crossorigin="anonymous"></script>
+</body>
+</html>

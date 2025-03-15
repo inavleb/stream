@@ -6,16 +6,15 @@ function PageNotFound(err, req, res, next) {
   res = res.status(err);
   this.title = req.__("pageNotFoundTitle");
   this.message = req.__("pageNotFoundMessage", {
-    url: `<code>${req.path}</code>`
+    url: `<code class="text-nowrap">${req.path}</code>`
   });
 
   this.summary = req.__("pageNotFoundSummary");
   this.status = HTTP_STATUS_CODES[err];
+  this.layout = false;
 
   if (req.xhr) res.json(this.status);
   else res.render("pages/error/404", this);
-
-  console.log(this);
 }
 
 function InternalServerError(err, req, res, next) {

@@ -1,4 +1,4 @@
 {
   "ext": "js",
-  "ignore": ["node_modules/", "public/"]
+  "ignore": ["node_modules/", "public/", "test.js"]
 }

@@ -1,9 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ locale }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#5F9BEB">
+  <meta name="title" content="{{ title }}">
+  <meta name="author" content="{{ author }}">
+  <meta name="robots" content="{{ robots }}">
+  <meta name="keywords" content="{{ keywords }}">
+  <meta name="description" content="{{ description }}">
+
   <title>{{ title }}</title>
 
   <link rel="icon" href="/static/icons/favicon.svg" type="image/svg+xml">
@@ -23,6 +29,7 @@
 
   {{> footer }}
 
+  <script src="/socket.io/socket.io.js" crossorigin="anonymous"></script>
   <script src="/static/js/libs/jquery.min.js" crossorigin="anonymous"></script>
   <script src="/static/js/libs/jquery-confirm.min.js" crossorigin="anonymous"></script>
   <script src="/static/js/libs/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

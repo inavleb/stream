@@ -15,11 +15,11 @@ var source = db.get("config.source").value();
 var symlinkdir = global.$symlinkdir;
 
 var watcher = chokidar.watch(source, {
-  persistent: true,
   ignored: (file, stats) =>
     stats?.isFile() && !/\.(mp4|webm)$/i.test(Path.parse(file).ext)
 });
 
+var Null = () => {};
 var error = options => Object.assign(new Error(), options);
 var guid = async () => {
   var limit = 64 ** 11;
@@ -55,12 +55,8 @@ DB.add = async path => {
     symlink = Path.join(symlinkdir, item.uuid);
 
     fs.symlink(path, symlink, "file", err => {
-      if (err) {
-        watcher.emit("error", err);
-        return queue.execute();
-      }
-
-      streams.push(item).write();
+      if (err) watcher.emit("error", err);
+      else streams.push(item).write();
       queue.execute();
     });
   };
@@ -75,16 +71,17 @@ DB.del = async path => {
 
   if (stream) {
     symlink = Path.join(symlinkdir, stream.uuid);
-    fs.unlink(symlink, err => streams.remove({ path }).write());
+    fs.unlink(symlink, Null);
+    streams.remove({ path }).write();
   }
 };
-
-if (!fs.existsSync(symlinkdir)) fs.mkdirSync(symlinkdir, { recursive: true });
 
 queue.execute = async () => {
   if (queue.length) DB.add(queue.shift());
   else setTimeout(queue.execute, 2500);
 };
+
+if (!fs.existsSync(symlinkdir)) fs.mkdirSync(symlinkdir, { recursive: true });
 
 watcher.on("add", path => queue.push(path));
 watcher.on("error", err => (console.log("WatcherError:"), console.error(err)));
